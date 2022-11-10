@@ -20,8 +20,10 @@
 //frotcc(A,B,C,D,E,F);	Face F rotation counterclockwise
 //hspin(A,B,C,D,E,F);	Cube horizontal spin clockwise
 //hspincc(A,B,C,D,E,F);	Cube horizontal spin counterclockwise
-//vspin(A,B,C,D,E,F);	Cube vertical spin clockwise
-//vspincc(A,B,C,D,E,F);	Cube vertical spin counterclockwise
+//vecspin(A,B,C,D,E,F);	Cube vertical spin clockwise (rotation of faces E & C)
+//vecspincc(A,B,C,D,E,F);	Cube vertical spin counterclockwise (rotation of faces E & C)
+//vbdspin(A,B,C,D,E,F);	Cube vertical spin clockwise (rotation of faces B & D)
+//vbdspincc(A,B,C,D,E,F);Cube vertical spin counterclockwise (rotation of faces B & D)
 //hmrot(A,B,C,D,E,F);	Cube horizontal middle layer rotation clockwise
 //hmrotcc(A,B,C,D,E,F);	Cube horizontal middle layer rotation counterclockwise
 //vmbrot(A,B,C,D,E,F);	Cube vertical middle layer parallel to B rotation clockwise
@@ -33,6 +35,7 @@
 
 
 #include <stdio.h>
+
 
 int solved(int A[100][100],int B[100][100],int C[100][100],int D[100][100],int E[100][100],int F[100][100]){
 	int i,j;
@@ -102,7 +105,7 @@ int printcube(int A[100][100],int B[100][100],int C[100][100],int D[100][100],in
 }
 
 
-//rotation of A face clockwise
+//rotation of face A clockwise
 int arot(int A[100][100],int B[100][100],int C[100][100],int D[100][100],int E[100][100],int F[100][100]){
 	int T[100][100],i,j;
 	
@@ -140,7 +143,7 @@ int arot(int A[100][100],int B[100][100],int C[100][100],int D[100][100],int E[1
 }
 
 
-//rotation of A face counter-clockwise
+//rotation of face A counter-clockwise
 int arotcc(int A[100][100],int B[100][100],int C[100][100],int D[100][100],int E[100][100],int F[100][100]){
 	int T[100][100],i,j;
 
@@ -178,7 +181,7 @@ int arotcc(int A[100][100],int B[100][100],int C[100][100],int D[100][100],int E
 }
 	
 
-//rotation of B face clockwise
+//rotation of face B clockwise
 int brot(int A[100][100],int B[100][100],int C[100][100],int D[100][100],int E[100][100],int F[100][100]){
 	int T[100][100],i,j;
 	
@@ -215,7 +218,7 @@ int brot(int A[100][100],int B[100][100],int C[100][100],int D[100][100],int E[1
 	}
 }
 
-//rotation of B face counter-clockwise
+//rotation of face B counter-clockwise
 int brotcc(int A[100][100],int B[100][100],int C[100][100],int D[100][100],int E[100][100],int F[100][100]){
 	int T[100][100],i,j;
 	
@@ -253,7 +256,7 @@ int brotcc(int A[100][100],int B[100][100],int C[100][100],int D[100][100],int E
 }
 	
 	
-//rotation of C face clockwise
+//rotation of face C clockwise
 int crot(int A[100][100],int B[100][100],int C[100][100],int D[100][100],int E[100][100],int F[100][100]){
 	int T[100][100],i,j;
 	
@@ -291,7 +294,7 @@ int crot(int A[100][100],int B[100][100],int C[100][100],int D[100][100],int E[1
 }
 
 
-//rotation of C face counter-clockwise
+//rotation of face C counter-clockwise
 int crotcc(int A[100][100],int B[100][100],int C[100][100],int D[100][100],int E[100][100],int F[100][100]){
 	int T[100][100],i,j;
 	
@@ -329,7 +332,7 @@ int crotcc(int A[100][100],int B[100][100],int C[100][100],int D[100][100],int E
 }
 
 
-//rotation of D face clockwise
+//rotation of face D clockwise
 int drot(int A[100][100],int B[100][100],int C[100][100],int D[100][100],int E[100][100],int F[100][100]){
 	int T[100][100],i,j;
 	
@@ -354,7 +357,7 @@ int drot(int A[100][100],int B[100][100],int C[100][100],int D[100][100],int E[1
 	}	
 
 	for (i=0;i<=2;i++){
-		C[i][2]=F[2-i][2];
+		C[i][2]=F[2][2-i];
 	}
 	
 	for (i=0;i<=2;i++){
@@ -367,7 +370,7 @@ int drot(int A[100][100],int B[100][100],int C[100][100],int D[100][100],int E[1
 }
 
 
-//rotation of D face counter-clockwise
+//rotation of face D counter-clockwise
 int drotcc(int A[100][100],int B[100][100],int C[100][100],int D[100][100],int E[100][100],int F[100][100]){
 	int T[100][100],i,j;
 	
@@ -405,7 +408,7 @@ int drotcc(int A[100][100],int B[100][100],int C[100][100],int D[100][100],int E
 }
 
 
-//rotation of E face clockwise
+//rotation of face E clockwise
 int erot(int A[100][100],int B[100][100],int C[100][100],int D[100][100],int E[100][100],int F[100][100]){
 	int T[100][100],i,j;
 	
@@ -443,7 +446,7 @@ int erot(int A[100][100],int B[100][100],int C[100][100],int D[100][100],int E[1
 }
 
 
-//rotation of E face counter-clockwise
+//rotation of face E counter-clockwise
 int erotcc(int A[100][100],int B[100][100],int C[100][100],int D[100][100],int E[100][100],int F[100][100]){
 	int T[100][100],i,j;
 	
@@ -481,7 +484,7 @@ int erotcc(int A[100][100],int B[100][100],int C[100][100],int D[100][100],int E
 }
 
 
-//rotation of F face clockwise
+//rotation of face F clockwise
 int frot(int A[100][100],int B[100][100],int C[100][100],int D[100][100],int E[100][100],int F[100][100]){
 	int T[100][100],i,j;
 	
@@ -519,7 +522,7 @@ int frot(int A[100][100],int B[100][100],int C[100][100],int D[100][100],int E[1
 }
 
 
-//rotation of F face counter-clockwise
+//rotation of face F counter-clockwise
 int frotcc(int A[100][100],int B[100][100],int C[100][100],int D[100][100],int E[100][100],int F[100][100]){
 	int T[100][100],i,j;
 	
@@ -641,25 +644,25 @@ int hspincc(int A[100][100],int B[100][100],int C[100][100],int D[100][100],int 
 		
 	for (i=0;i<=2;i++){
 		for (j=0;j<=2;j++){
-			B[i][j]=C[i][j];
+			B[i][j]=E[i][j];
 		}
 	}
 	
 	for (i=0;i<=2;i++){
 		for (j=0;j<=2;j++){
-			C[i][j]=D[2-i][2-j];
+			E[i][j]=D[2-i][2-j];
 		}
 	}
 	
 	for (i=0;i<=2;i++){
 		for (j=0;j<=2;j++){
-			D[i][j]=E[2-i][2-j];
+			D[i][j]=C[2-i][2-j];
 		}
 	}
 	
 	for (i=0;i<=2;i++){
 		for (j=0;j<=2;j++){
-			E[i][j]=T[i][j];
+			C[i][j]=T[i][j];
 		}
 	}
 	
@@ -797,6 +800,124 @@ int vspincc(int A[100][100],int B[100][100],int C[100][100],int D[100][100],int 
 }
 
 
+//cube - clockwise rotation in vertical plan (rotation of faces B & D)
+int vbdspin(int A[100][100],int B[100][100],int C[100][100],int D[100][100],int E[100][100],int F[100][100]){
+	int T[100][100],i,j;
+	
+	for (i=0;i<=2;i++){
+		for (j=0;j<=2;j++){
+			T[i][j]=B[i][j];
+		}
+	}
+	
+	for (i=0;i<=2;i++){
+		for (j=0;j<=2;j++){
+			B[i][j]=T[2-j][i];
+		}
+	}
+
+	for (i=0;i<=2;i++){
+		for (j=0;j<=2;j++){
+			T[i][j]=A[i][j];
+		}
+	}
+
+	for (i=0;i<=2;i++){
+		for (j=0;j<=2;j++){
+			A[i][j]=E[2-j][i];
+		}
+	}
+	
+	for (i=0;i<=2;i++){
+		for (j=0;j<=2;j++){
+			E[i][j]=F[2-j][i];
+		}
+	}
+	
+	for (i=0;i<=2;i++){
+		for (j=0;j<=2;j++){
+			F[i][j]=C[2-j][i];
+		}
+	}
+		
+	for (i=0;i<=2;i++){
+		for (j=0;j<=2;j++){
+			C[i][j]=T[2-j][i];
+		}
+	}
+	
+	for (i=0;i<=2;i++){
+		for (j=0;j<=2;j++){
+			T[i][j]=D[i][j];
+		}
+	}
+		
+	for (i=0;i<=2;i++){
+		for (j=0;j<=2;j++){
+			D[i][j]=T[j][2-i];
+		}
+	}	
+}
+
+
+//cube - counterclockwise rotation in vertical plan (rotation of faces B & D)
+int vbdspincc(int A[100][100],int B[100][100],int C[100][100],int D[100][100],int E[100][100],int F[100][100]){
+	int T[100][100],i,j;
+	
+	for (i=0;i<=2;i++){
+		for (j=0;j<=2;j++){
+			T[i][j]=B[i][j];
+		}
+	}
+	
+	for (i=0;i<=2;i++){
+		for (j=0;j<=2;j++){
+			B[i][j]=T[j][2-i];
+		}
+	}
+
+	for (i=0;i<=2;i++){
+		for (j=0;j<=2;j++){
+			T[i][j]=A[i][j];
+		}
+	}
+
+	for (i=0;i<=2;i++){
+		for (j=0;j<=2;j++){
+			A[i][j]=C[j][2-i];
+		}
+	}
+	
+	for (i=0;i<=2;i++){
+		for (j=0;j<=2;j++){
+			C[i][j]=F[j][2-i];
+		}
+	}
+	
+	for (i=0;i<=2;i++){
+		for (j=0;j<=2;j++){
+			F[i][j]=E[j][2-i];
+		}
+	}
+		
+	for (i=0;i<=2;i++){
+		for (j=0;j<=2;j++){
+			E[i][j]=T[j][2-i];
+		}
+	}
+	
+	for (i=0;i<=2;i++){
+		for (j=0;j<=2;j++){
+			T[i][j]=D[i][j];
+		}
+	}
+		
+	for (i=0;i<=2;i++){
+		for (j=0;j<=2;j++){
+			D[i][j]=T[2-j][i];
+		}
+	}	
+}
 //cube - middle plan clockwise rotation in horizontal plan
 int hmrot(int A[100][100],int B[100][100],int C[100][100],int D[100][100],int E[100][100],int F[100][100]){
 	int T[100][100],i,j;
@@ -952,6 +1073,7 @@ int vmcrotcc(int A[100][100],int B[100][100],int C[100][100],int D[100][100],int
 	}
 }
 
+
 int positions(){
 	printf("\n");
 	printf("Cube faces positions:\n");
@@ -961,6 +1083,7 @@ int positions(){
 	printf("	  D\n");
 	printf("\n");
 }
+
 
 void main(){
 	int A[100][100],B[100][100],C[100][100],D[100][100],E[100][100],F[100][100];
@@ -987,8 +1110,10 @@ void main(){
 	//frotcc(A,B,C,D,E,F);	Face F rotation counterclockwise
 	//hspin(A,B,C,D,E,F);	Cube horizontal spin clockwise
 	//hspincc(A,B,C,D,E,F);	Cube horizontal spin counterclockwise
-	//vspin(A,B,C,D,E,F);	Cube vertical spin clockwise
-	//vspincc(A,B,C,D,E,F);	Cube vertical spin counterclockwise
+	//vecspin(A,B,C,D,E,F);	Cube vertical spin clockwise (rotation of faces E & C)
+	//vecspincc(A,B,C,D,E,F);	Cube vertical spin counterclockwise (rotation of faces E & C)
+	//vbdspin(A,B,C,D,E,F);	Cube vertical spin clockwise (rotation of faces B & D)
+	//vbdspincc(A,B,C,D,E,F);Cube vertical spin counterclockwise (rotation of faces B & D)
 	//hmrot(A,B,C,D,E,F);	Cube horizontal middle layer rotation clockwise
 	//hmrotcc(A,B,C,D,E,F);	Cube horizontal middle layer rotation counterclockwise
 	//vmbrot(A,B,C,D,E,F);	Cube vertical middle layer parallel to B rotation clockwise
@@ -998,6 +1123,4 @@ void main(){
 	//positions();			Faces positions sketch
 	//printcube(A,B,C,D,E,F);Prints actual state of the cube
 	
-
-		
 }
