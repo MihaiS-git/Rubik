@@ -15,6 +15,13 @@
 
 #include <stdio.h>
 #include <time.h> 
+#define ANSI_RED "\x1b[31m" 
+#define ANSI_GREEN "\x1b[32m" 
+#define ANSI_YELLOW "\x1b[33m" 
+#define ANSI_BLUE "\x1b[34m" 
+#define ANSI_MAGENTA "\x1b[35m" 
+#define ANSI_CYAN "\x1b[36m" 
+#define ANSI_RESET "\x1b[0m" 
 
 int solved(int A[100][100],int B[100][100],int C[100][100],int D[100][100],int E[100][100],int F[100][100]){
 	int i,j;
@@ -50,15 +57,17 @@ int printcube(int A[100][100],int B[100][100],int C[100][100],int D[100][100],in
 	for (i=0;i<=n-1;i++){
 		//print E
 		for (j=0;j<=n-1;j++){
-			printf("%2d",E[i][j]);
+			printf(ANSI_RED "%2d",E[i][j]);
 		}
+		
 		//print B
 		for (j=0;j<=n-1;j++){
-			printf("%2d",B[i][j]);
+			printf(ANSI_GREEN "%2d",B[i][j]);
 		}
+		
 		//print C
 		for (j=0;j<=n-1;j++){
-			printf("%2d",C[i][j]);
+			printf(ANSI_YELLOW "%2d",C[i][j]);
 		}
 		printf("\n");
 	}
@@ -67,7 +76,7 @@ int printcube(int A[100][100],int B[100][100],int C[100][100],int D[100][100],in
 	for (i=0;i<=n-1;i++){
 		printf("      ");
 		for (j=0;j<=n-1;j++){
-			printf("%2d",F[i][j]);
+			printf(ANSI_CYAN "%2d",F[i][j]);
 		}
 		printf("\n");
 	}
@@ -76,11 +85,12 @@ int printcube(int A[100][100],int B[100][100],int C[100][100],int D[100][100],in
 	for (i=0;i<=n-1;i++){
 		printf("      ");
 		for (j=0;j<=n-1;j++){
-			printf("%2d",D[i][j]);
+			printf(ANSI_MAGENTA "%2d",D[i][j]);
 		}
 		printf("\n");
 	}
-	printf("\n");
+	printf(ANSI_RESET "\n");
+	
 }
 
 
@@ -294,7 +304,11 @@ int cond(int A[100][100],int B[100][100],int C[100][100],int D[100][100],int E[1
 
 
 void main(){
-	int A[100][100],B[100][100],C[100][100],D[100][100],E[100][100],F[100][100];
+	int A[100][100],B[100][100],C[100][100],D[100][100],E[100][100],F[100][100],step;
+	time_t t;
+    
+	time(&t);
+    printf("\n Start: %s", ctime(&t));
 	
 	//showing the cube faces sketch
 	positions();
@@ -305,14 +319,19 @@ void main(){
 	printcube(A,B,C,D,E,F);
 	
 	//shuffeling the cube in a random way
+	printf(ANSI_RED "***Random shuffeled cube***\n");
 	shuff(A,B,C,D,E,F);
  	printcube(A,B,C,D,E,F);
+	sleep(3);
 	
 	//solving the cube
+	step=0;
 	while (cond(A,B,C,D,E,F)==0){
+		step++;
+		printf(ANSI_RED"Step: %d\n",step);
 		shuff(A,B,C,D,E,F);
+		printcube(A,B,C,D,E,F);
 	}
-	printcube(A,B,C,D,E,F);
-	
+	printf("\n End: %s", ctime(&t));
 }
 
